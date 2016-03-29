@@ -35,8 +35,29 @@ public class DetailActivity extends AppCompatActivity {
         }
 
         int userId = getIntent().getIntExtra(USER_ID_KEY, 0);
-        User user = PersonsDBHelper.getUser(userId);
-        setTitle(user.getName());
+//        User user = PersonsDBHelper.getUser(userId);
+//        setTitle(user.getName());
+        GetRealmRunnable getRealmRunnable = new GetRealmRunnable(userId);
+        getRealmRunnable.run();
+    }
+
+    public class GetRealmRunnable implements Runnable {
+        private int userId;
+
+        public GetRealmRunnable(int userId) {
+            this.userId = userId;
+        }
+
+        @Override
+        public void run() {
+            final User user = PersonsDBHelper.getUser(userId);
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    setTitle(user.getName());
+                }
+            });
+        }
     }
 
 }

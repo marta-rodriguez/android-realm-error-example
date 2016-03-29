@@ -81,12 +81,33 @@ public class UsersFragment extends Fragment {
     }
 
     public void editUser(int userId, String newName) {
-        User user = PersonsDBHelper.getUser(userId);
-        user.setName(newName);
-        PersonsDBHelper.saveUser(user);
-
-        ArrayList<User> users = PersonsDBHelper.getUsers();
-        usersInfo.setText(users.toString());
+        EditRealmRunnable editRealmRunnable = new EditRealmRunnable(userId, newName);
+        editRealmRunnable.run();
     }
 
+    public class EditRealmRunnable implements Runnable {
+        private int userId;
+        private String newName;
+
+        public EditRealmRunnable(int userId, String newName) {
+            this.userId = userId;
+            this.newName = newName;
+        }
+
+        @Override
+        public void run() {
+            User user = PersonsDBHelper.getUser(userId);
+            user.setName(newName);
+            PersonsDBHelper.saveUser(user);
+
+            final ArrayList<User> users = PersonsDBHelper.getUsers();
+            getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    usersInfo.setText(users.toString());
+                }
+            });
+        }
+
+    }
 }
