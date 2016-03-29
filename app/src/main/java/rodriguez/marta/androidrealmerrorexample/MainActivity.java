@@ -3,15 +3,11 @@ package rodriguez.marta.androidrealmerrorexample;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.widget.TextView;
 
-import butterknife.Bind;
 import butterknife.ButterKnife;
+import rodriguez.marta.realm.ui.fragments.UsersFragment;
 
 public class MainActivity extends AppCompatActivity {
-
-    @Bind(R.id.contentTextView)
-    TextView contentTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,5 +17,9 @@ public class MainActivity extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        getFragmentManager().beginTransaction()
+                .add(R.id.main_content, UsersFragment.newInstance())
+                .commit();
     }
 }

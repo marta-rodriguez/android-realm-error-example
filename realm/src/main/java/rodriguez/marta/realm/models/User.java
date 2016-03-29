@@ -13,6 +13,17 @@ public class User {
 
     private ArrayList<Car> cars;
 
+    public User() {
+
+    }
+
+    public User(int userId, String name, String photoURL, ArrayList<Car> cars) {
+        this.cars = cars;
+        this.name = name;
+        this.photoURL = photoURL;
+        this.userId = userId;
+    }
+
     public ArrayList<Car> getCars() {
         return cars;
     }
@@ -43,5 +54,10 @@ public class User {
 
     public void setUserId(int userId) {
         this.userId = userId;
+    }
+
+    @Override
+    public String toString() {
+        return "userId = "+userId+", name = "+name+", photoURL = "+photoURL+", cars = "+cars.toString()+"\n\n\n";
     }
 }

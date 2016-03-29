@@ -10,6 +10,16 @@ public class Car {
     private String name;
     private int hp;
 
+    public Car() {
+
+    }
+
+    public Car(int carId, String name, int hp) {
+        this.carId = carId;
+        this.hp = hp;
+        this.name = name;
+    }
+
     public int getCarId() {
         return carId;
     }
@@ -32,5 +42,10 @@ public class Car {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "   cardId = "+carId+", name = "+name+", hp = "+hp+"\n";
     }
 }
