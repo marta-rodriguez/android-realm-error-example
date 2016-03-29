@@ -58,6 +58,6 @@ public class User {
 
     @Override
     public String toString() {
-        return "userId = "+userId+", name = "+name+", photoURL = "+photoURL+", cars = "+cars.toString()+"\n\n\n";
+        return "userId = "+userId+", name = "+name+"\nphotoURL = "+photoURL+"\ncars:\n"+cars.toString()+"\n\n\n";
     }
 }

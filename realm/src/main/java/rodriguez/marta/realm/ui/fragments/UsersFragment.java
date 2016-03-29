@@ -80,4 +80,13 @@ public class UsersFragment extends Fragment {
         return view;
     }
 
+    public void editUser(int userId, String newName) {
+        User user = PersonsDBHelper.getUser(userId);
+        user.setName(newName);
+        PersonsDBHelper.saveUser(user);
+
+        ArrayList<User> users = PersonsDBHelper.getUsers();
+        usersInfo.setText(users.toString());
+    }
+
 }
